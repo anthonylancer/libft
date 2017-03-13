@@ -22,3 +22,6 @@ fclean: clean
 	rm -f $(NAME)
 
 re: fclean all
+
+t:
+	gcc main.c -o c; ./c
