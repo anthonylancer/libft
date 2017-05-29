@@ -1,42 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_memalloc.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amironen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/22 19:16:41 by amironen          #+#    #+#             */
-/*   Updated: 2017/04/22 19:16:43 by amironen         ###   ########.fr       */
+/*   Created: 2017/04/22 19:09:34 by amironen          #+#    #+#             */
+/*   Updated: 2017/04/22 19:09:36 by amironen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+void	*ft_memalloc(size_t size)
 {
-	char		*d;
-	const char	*s;
-	size_t		n;
-	size_t		dlen;
+	int		*ptr;
+	size_t	i;
 
-	d = dst;
-	s = src;
-	n = size;
-	while (n-- != 0 && *d != '\0')
-		d++;
-	dlen = d - dst;
-	n = size - dlen;
-	if (n == 0)
-		return (dlen + ft_strlen(s));
-	while (*s)
+	i = 0;
+	ptr = (int *)malloc(sizeof(int *) * size);
+	if (!ptr)
+		return (NULL);
+	while (i < size)
 	{
-		if (n != 1)
-		{
-			*d++ = *s;
-			n--;
-		}
-		s++;
+		ptr[i] = 0;
+		i++;
 	}
-	*d = '\0';
-	return (dlen + (s - src));
+	return (ptr);
 }

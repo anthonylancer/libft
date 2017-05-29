@@ -1,42 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strlcat.c                                       :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amironen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/22 19:16:41 by amironen          #+#    #+#             */
-/*   Updated: 2017/04/22 19:16:43 by amironen         ###   ########.fr       */
+/*   Created: 2017/04/22 19:16:26 by amironen          #+#    #+#             */
+/*   Updated: 2017/04/22 19:16:32 by amironen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_strlcat(char *dst, const char *src, size_t size)
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	char		*d;
-	const char	*s;
-	size_t		n;
-	size_t		dlen;
+	char	*pt;
+	size_t	len;
 
-	d = dst;
-	s = src;
-	n = size;
-	while (n-- != 0 && *d != '\0')
-		d++;
-	dlen = d - dst;
-	n = size - dlen;
-	if (n == 0)
-		return (dlen + ft_strlen(s));
-	while (*s)
+	if (s1 && s2)
 	{
-		if (n != 1)
-		{
-			*d++ = *s;
-			n--;
-		}
-		s++;
+		len = (ft_strlen(s1) + ft_strlen(s2) + 1);
+		if (!(pt = (char *)malloc(sizeof(char) * len)))
+			return (NULL);
+		ft_strcpy(pt, s1);
+		ft_strcpy(pt + ft_strlen(s1), s2);
+		pt[len] = '\0';
+		return (pt);
 	}
-	*d = '\0';
-	return (dlen + (s - src));
+	else
+		return (NULL);
 }

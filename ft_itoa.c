@@ -1,25 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amironen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/22 19:15:31 by amironen          #+#    #+#             */
-/*   Updated: 2017/04/22 19:15:35 by amironen         ###   ########.fr       */
+/*   Created: 2017/04/23 23:59:53 by amironen          #+#    #+#             */
+/*   Updated: 2017/04/24 00:00:05 by amironen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+static size_t	intlen(int n)
 {
-	int		i;
-	char	*str;
+	size_t i;
 
-	i = ft_strlen(s1);
-	str = (char *)malloc((i + 1) * sizeof(char));
-	if (!str)
+	i = 1;
+	if (n < 0)
+		i++;
+	while (n /= 10)
+		i++;
+	return (i);
+}
+
+char			*ft_itoa(int n)
+{
+	char	*res;
+	size_t	len;
+	int		flag;
+
+	if (n == -2147483648)
+		return (ft_strdup("-2147483648"));
+	len = intlen(n);
+	if (!(res = ft_strnew(len)))
 		return (NULL);
-	return (ft_strcpy(str, s1));
+	if (n < 0)
+	{
+		*res = '-';
+		n *= -1;
+		flag = 1;
+	}
+	else
+		flag = 0;
+	while (len--)
+	{
+		if (n || !flag)
+			res[len] = (n % 10) + '0';
+		n /= 10;
+	}
+	return (res);
 }
