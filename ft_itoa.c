@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 static size_t	intlen(int n)
 {
@@ -30,8 +30,6 @@ char			*ft_itoa(int n)
 	size_t	len;
 	int		flag;
 
-	if (n == -2147483648)
-		return (ft_strdup("-2147483648"));
 	len = intlen(n);
 	if (!(res = ft_strnew(len)))
 		return (NULL);

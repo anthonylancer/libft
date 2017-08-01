@@ -10,12 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 void	ft_putchar(char c)
 {
-	if ((int)c < 128)
-		write(1, &c, 1);
-	else
-		write(1, &"?", 1);
+	write(1, &c, 1);
 }

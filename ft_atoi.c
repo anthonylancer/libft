@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "includes/libft.h"
 
 int	ft_atoi(const char *str)
 {
@@ -19,8 +19,7 @@ int	ft_atoi(const char *str)
 
 	sign = 1;
 	res = 0;
-	while (*str == '\n' || *str == '\t' || *str == '\r' || *str == '\v' ||
-		*str == '\f' || *str == ' ')
+	while (ft_isblank(*str))
 		str++;
 	if (*str == '-')
 	{
@@ -30,12 +29,6 @@ int	ft_atoi(const char *str)
 	else if (*str == '+')
 		str++;
 	while (ft_isdigit(*str))
-	{
 		res = (res * 10) + *str++ - '0';
-		if (res >= 9223372036854775807 && sign == 1)
-			return (-1);
-		if (res > 9223372036854775807 && sign == -1)
-			return (0);
-	}
 	return (res * sign);
 }

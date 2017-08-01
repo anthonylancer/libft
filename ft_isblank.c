@@ -1,22 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memdel.c                                        :+:      :+:    :+:   */
+/*   ft_isblank.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: amironen <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/04/22 19:11:15 by amironen          #+#    #+#             */
-/*   Updated: 2017/04/22 19:11:18 by amironen         ###   ########.fr       */
+/*   Created: 2017/07/26 20:24:42 by amironen          #+#    #+#             */
+/*   Updated: 2017/07/26 20:24:54 by amironen         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "includes/libft.h"
-
-void	ft_memdel(void **ap)
+unsigned char	ft_isblank(char str)
 {
-	if (ap)
-	{
-		free(*ap);
-		*ap = 0;
-	}
+	if (str == '\n' || str == '\t' || str == '\r' || str == '\v' ||
+			str == '\f' || str == ' ')
+		return (1);
+	else
+		return (0);
 }
